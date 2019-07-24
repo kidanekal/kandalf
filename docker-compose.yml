@@ -12,9 +12,9 @@ services:
             STORAGE_DSN: "redis://kandalf-redis:6379/?key=kandalf"
             KAFKA_BROKERS: "kandalf-kafka:9092"
         links:
-            - kafka
-            - redis
-            - rmq
+            - kandalf-kafka
+            - kandalf-redis
+            - kandalf-rabbit
         networks:
             - kandalf
 
