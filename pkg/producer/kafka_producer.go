@@ -25,6 +25,11 @@ func NewKafkaProducer(kafkaConfig config.KafkaConfig, statsClient client.Client)
 	cnf.Producer.Retry.Max = kafkaConfig.MaxRetry
 	// Producer.Return.Successes must be true to be used in a SyncProducer
 	cnf.Producer.Return.Successes = true
+
+	if kafkaConfig.TlsEnabled {
+		cnf.Net.TLS.Enable = true
+	}
+
 	log.Info("kafka config")
 	log.Info(kafkaConfig.Brokers)
 

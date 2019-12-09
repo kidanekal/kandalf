@@ -50,6 +50,8 @@ type KafkaConfig struct {
 	//
 	// Default path is "/etc/kandalf/conf/pipes.yml".
 	PipesConfig string `envconfig:"KAFKA_PIPES_CONFIG"`
+
+	TlsEnabled bool
 }
 
 // StatsConfig contains application configuration values for stats.
@@ -78,6 +80,7 @@ type WorkerConfig struct {
 func init() {
 	viper.SetDefault("logLevel", "info")
 	viper.SetDefault("kafka.maxRetry", 5)
+	viper.SetDefault("kafka.tlsEnabled", false)
 	viper.SetDefault("kafka.pipesConfig", "/etc/kandalf/conf/pipes.yml")
 	viper.SetDefault("worker.cycleTimeout", time.Second*time.Duration(2))
 	viper.SetDefault("worker.cacheSize", 10)
