@@ -18,6 +18,7 @@ func assertConfig(t *testing.T, globalConfig *GlobalConfig) {
 	assert.Equal(t, "192.0.0.1:9092", globalConfig.Kafka.Brokers[0])
 	assert.Equal(t, "192.0.0.2:9092", globalConfig.Kafka.Brokers[1])
 	assert.Equal(t, 5, globalConfig.Kafka.MaxRetry)
+	assert.Equal(t, false, globalConfig.Kafka.TLSEnabled)
 	assert.Equal(t, "/etc/kandalf/conf/pipes.yml", globalConfig.Kafka.PipesConfig)
 
 	assert.Equal(t, "statsd://statsd.local:8125/kandalf", globalConfig.Stats.DSN)
@@ -52,6 +53,7 @@ func setGlobalConfigEnv() {
 	os.Setenv("STORAGE_DSN", "redis://redis.local/?key=storage:key")
 	os.Setenv("KAFKA_BROKERS", "192.0.0.1:9092,192.0.0.2:9092")
 	os.Setenv("KAFKA_MAX_RETRY", "5")
+	os.Setenv("KAFKA_TLS_ENABLED", "false")
 	os.Setenv("KAFKA_PIPES_CONFIG", "/etc/kandalf/conf/pipes.yml")
 	os.Setenv("STATS_DSN", "statsd://statsd.local:8125/kandalf")
 	os.Setenv("WORKER_CYCLE_TIMEOUT", "2s")

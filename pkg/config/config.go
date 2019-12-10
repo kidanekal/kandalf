@@ -51,7 +51,7 @@ type KafkaConfig struct {
 	// Default path is "/etc/kandalf/conf/pipes.yml".
 	PipesConfig string `envconfig:"KAFKA_PIPES_CONFIG"`
 
-	TlsEnabled bool
+	TLSEnabled bool `envconfig:"KAFKA_TLS_ENABLED"`
 }
 
 // StatsConfig contains application configuration values for stats.
