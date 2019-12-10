@@ -26,6 +26,11 @@ func NewKafkaProducer(kafkaConfig config.KafkaConfig, statsClient client.Client)
 	// Producer.Return.Successes must be true to be used in a SyncProducer
 	cnf.Producer.Return.Successes = true
 
+	if kafkaConfig.TLSEnabled {
+		cnf.Net.TLS.Enable = true
+	}
+	log.Info(kafkaConfig.Brokers)
+
 	kafkaClient, err := sarama.NewSyncProducer(kafkaConfig.Brokers, cnf)
 	if err != nil {
 		return nil, err
