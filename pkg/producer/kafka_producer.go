@@ -29,8 +29,6 @@ func NewKafkaProducer(kafkaConfig config.KafkaConfig, statsClient client.Client)
 	if kafkaConfig.TLSEnabled {
 		cnf.Net.TLS.Enable = true
 	}
-
-	log.Info("kafka config")
 	log.Info(kafkaConfig.Brokers)
 
 	kafkaClient, err := sarama.NewSyncProducer(kafkaConfig.Brokers, cnf)
